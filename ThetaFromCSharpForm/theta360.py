@@ -667,16 +667,16 @@ def create():
 #==============================================================================
 def capture():
     print "capture"
-    t = THETA360()
-    t.open()
-    theta.InitiateCapture()
-    num_objs = theta.prepare()
-    obj_idx = num_objs - 1
-    obj_info = theta.get_info(obj_idx)
-    image = theta.get_object(obj_idx)
-    theta.write_local(obj_info['Filename'], image)
-    print 'saved "%s"' % obj_info['Filename']
-    theta.close()
+    theta = THETA360()
+    if theta.open() is True:
+        theta.InitiateCapture()
+        num_objs = theta.prepare()
+        obj_idx = num_objs - 1
+        obj_info = theta.get_info(obj_idx)
+        image = theta.get_object(obj_idx)
+        theta.write_local(obj_info['Filename'], image)
+        print 'saved "%s"' % obj_info['Filename']
+        theta.close()
 
 #==============================================================================
 # Sample: shutter & download image to PC
