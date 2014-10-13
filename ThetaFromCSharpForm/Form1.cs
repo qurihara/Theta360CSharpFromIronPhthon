@@ -44,6 +44,9 @@ namespace ThetaFromCSharpForm
             Action hello = engine.Operations.GetMember<Action>(scope, "capture");
             hello(); // => 'hello, world'
 
+            string f = engine.Execute<string>("recent_image", scope);
+            MessageBox.Show(f);
+
         }
 
         private void button3_Click(object sender, EventArgs e)

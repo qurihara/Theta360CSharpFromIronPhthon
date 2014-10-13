@@ -38,6 +38,8 @@ PTP_EC_DevicePropChanged = 0x4006
 PTP_EC_StoreFull         = 0x400a
 PTP_EC_CaptureComplete   = 0x400d 
 
+recent_image = ''
+
 #==============================================================================
 class PTP_IP(object):
     # -------------------------------------------------------------------------
@@ -520,21 +522,21 @@ class PTP_IP(object):
 
     # -------------------------------------------------------------------------
     def unpackInt32(self, payload):
-        return struct.unpack('<I', payload)[0]
+        return _struct.unpack('<I', payload)[0]
 
     # -------------------------------------------------------------------------
     def packInt32(self, val):
-        return struct.pack('<I', val)
+        return _struct.pack('<I', val)
 
     # -------------------------------------------------------------------------
     def unpackInt16(self, payload):
-        return struct.unpack('<H', payload)[0]
+        return _struct.unpack('<H', payload)[0]
 
     # -------------------------------------------------------------------------
     def packInt16(self, val):
         if val < 0:
             val = 0x10000 + val
-        return struct.pack('<H', val)
+        return _struct.pack('<H', val)
 
     # -------------------------------------------------------------------------
     def unpackInt32Array(self, payload):
@@ -676,6 +678,7 @@ def capture():
         image = theta.get_object(obj_idx)
         theta.write_local(obj_info['Filename'], image)
         print 'saved "%s"' % obj_info['Filename']
+        recent_image = obj_info['Filename']
         theta.close()
 
 #==============================================================================
