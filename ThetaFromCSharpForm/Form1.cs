@@ -41,11 +41,14 @@ namespace ThetaFromCSharpForm
             ScriptSource src = engine.CreateScriptSourceFromFile("theta360.py");
             src.Execute(scope);
 
-            Action hello = engine.Operations.GetMember<Action>(scope, "capture");
-            hello(); // => 'hello, world'
+            engine.Execute("Save_Dir = \"./image/\"", scope);
+            string bar = engine.Execute<string>("Save_Dir", scope);
 
-            string f = engine.Execute<string>("recent_image", scope);
-            MessageBox.Show(f);
+            Action capture = engine.Operations.GetMember<Action>(scope, "capture");
+            capture();
+
+            //var f = engine.Operations.GetMember<string>(scope,"recent_image");// .Execute<string>("recent_image", scope);
+            //MessageBox.Show(f);
 
         }
 
@@ -59,6 +62,13 @@ namespace ThetaFromCSharpForm
             Action bar = engine.Operations.GetMember<Action>(fooObject, "InitiateCapture");
             bar(); // => 'Foo.bar()'
 
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            string saveDir = "./image2/";
+            bool suc = Theta360Wrapper.Theta360.Capture(saveDir);
+            MessageBox.Show(suc.ToString());
         }
     }
 }
