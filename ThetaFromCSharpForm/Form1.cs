@@ -8,8 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-using IronPython.Hosting;
-using Microsoft.Scripting.Hosting;
+//using IronPython.Hosting;
+//using Microsoft.Scripting.Hosting;
 
 // see these links:
 // http://st63jun.hatenablog.jp/entry/2013/07/22/001423
@@ -27,40 +27,40 @@ namespace ThetaFromCSharpForm
 
         private void button1_Click(object sender, EventArgs e)
         {
-            ScriptEngine engine = Python.CreateEngine();
+            //ScriptEngine engine = Python.CreateEngine();
 
-            ScriptSource src = engine.CreateScriptSourceFromFile("theta360.py");
-            //ScriptSource src = engine.CreateScriptSourceFromString("print \"Hello Python World\"");
-            src.Execute();
+            //ScriptSource src = engine.CreateScriptSourceFromFile("theta360.py");
+            ////ScriptSource src = engine.CreateScriptSourceFromString("print \"Hello Python World\"");
+            //src.Execute();
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            ScriptEngine engine = IronPython.Hosting.Python.CreateEngine();
-            ScriptScope scope = engine.CreateScope();
-            ScriptSource src = engine.CreateScriptSourceFromFile("theta360.py");
-            src.Execute(scope);
+            //ScriptEngine engine = IronPython.Hosting.Python.CreateEngine();
+            //ScriptScope scope = engine.CreateScope();
+            //ScriptSource src = engine.CreateScriptSourceFromFile("theta360.py");
+            //src.Execute(scope);
 
-            engine.Execute("Save_Dir = \"./image/\"", scope);
-            string bar = engine.Execute<string>("Save_Dir", scope);
+            //engine.Execute("Save_Dir = \"./image/\"", scope);
+            //string bar = engine.Execute<string>("Save_Dir", scope);
 
-            Action capture = engine.Operations.GetMember<Action>(scope, "capture");
-            capture();
+            //Action capture = engine.Operations.GetMember<Action>(scope, "capture");
+            //capture();
 
-            //var f = engine.Operations.GetMember<string>(scope,"recent_image");// .Execute<string>("recent_image", scope);
-            //MessageBox.Show(f);
+            ////var f = engine.Operations.GetMember<string>(scope,"recent_image");// .Execute<string>("recent_image", scope);
+            ////MessageBox.Show(f);
 
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
-            ScriptEngine engine = IronPython.Hosting.Python.CreateEngine();
-            ScriptScope scope = engine.CreateScope();
-            ScriptSource src = engine.CreateScriptSourceFromFile("theta360.py");
+            //ScriptEngine engine = IronPython.Hosting.Python.CreateEngine();
+            //ScriptScope scope = engine.CreateScope();
+            //ScriptSource src = engine.CreateScriptSourceFromFile("theta360.py");
 
-            object fooObject = engine.Operations.Invoke(scope.GetVariable("THETA360"));
-            Action bar = engine.Operations.GetMember<Action>(fooObject, "InitiateCapture");
-            bar(); // => 'Foo.bar()'
+            //object fooObject = engine.Operations.Invoke(scope.GetVariable("THETA360"));
+            //Action bar = engine.Operations.GetMember<Action>(fooObject, "InitiateCapture");
+            //bar(); // => 'Foo.bar()'
 
         }
 
