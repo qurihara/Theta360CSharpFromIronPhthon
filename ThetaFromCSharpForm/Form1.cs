@@ -66,9 +66,26 @@ namespace ThetaFromCSharpForm
 
         private void button4_Click(object sender, EventArgs e)
         {
-            string saveDir = "./image2/";
+            timer1.Stop();
+            string saveDir = "C:/tmp/server/imgs/";
             bool suc = Theta360Wrapper.Theta360.Capture(saveDir);
+
+            timer1.Start();
+
             MessageBox.Show(suc.ToString());
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox1.Checked)
+                timer1.Start();
+            else
+                timer1.Stop();
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            Theta360Wrapper.Theta360.KeepAlive();
         }
     }
 }

@@ -681,7 +681,14 @@ def capture():
         theta.write_local(obj_info['Filename'], image)
         print 'saved "%s"' % obj_info['Filename']
         theta.close()
-
+#==============================================================================
+def keep_alive():
+    print "ping"
+    theta = THETA360()
+    if theta.open() is True:
+#        theta.InitiateCapture()
+#        num_objs = theta.prepare()
+        theta.close()
 #==============================================================================
 # Sample: shutter & download image to PC
 if __name__ == '__main__':

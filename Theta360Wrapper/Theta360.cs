@@ -11,12 +11,37 @@ namespace Theta360Wrapper
 {
     public class Theta360
     {
-        public static bool Capture(string saveDir)
+        protected static void Init(out ScriptEngine engine, out ScriptScope scope)
         {
-            ScriptEngine engine = IronPython.Hosting.Python.CreateEngine();
-            ScriptScope scope = engine.CreateScope();
+            engine = IronPython.Hosting.Python.CreateEngine();
+            scope = engine.CreateScope();
             ScriptSource src = engine.CreateScriptSourceFromFile("theta360.py");
             src.Execute(scope);
+        }
+        public static bool KeepAlive()
+        {
+            ScriptEngine engine;
+            ScriptScope scope;
+            Init(out engine, out scope);
+
+            try
+            {
+
+                Action keepAlive = engine.Operations.GetMember<Action>(scope, "keep_alive");
+                keepAlive();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+
+        }
+        public static bool Capture(string saveDir)
+        {
+            ScriptEngine engine;
+            ScriptScope scope;
+            Init(out engine, out scope);
 
             try
             {
