@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ThetaFromCSharpForm", "Thet
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Theta360Wrapper", "Theta360Wrapper\Theta360Wrapper.csproj", "{B01E7A87-6C15-42B0-889B-AD97B15DE0FD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ThetaCapture", "ThetaCapture\ThetaCapture.csproj", "{1E9777E2-D1EA-43F4-9497-A6EB1C7D58CA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{B01E7A87-6C15-42B0-889B-AD97B15DE0FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B01E7A87-6C15-42B0-889B-AD97B15DE0FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B01E7A87-6C15-42B0-889B-AD97B15DE0FD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1E9777E2-D1EA-43F4-9497-A6EB1C7D58CA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1E9777E2-D1EA-43F4-9497-A6EB1C7D58CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1E9777E2-D1EA-43F4-9497-A6EB1C7D58CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1E9777E2-D1EA-43F4-9497-A6EB1C7D58CA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
