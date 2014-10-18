@@ -22,6 +22,7 @@ namespace SocketIO4Net.ClientTest
             InitializeComponent();
 
             this.FormClosed += Form1_FormClosed;
+            System.Net.WebRequest.DefaultWebProxy = null;
         }
 
         void Form1_FormClosed(object sender, FormClosedEventArgs e)
@@ -34,7 +35,8 @@ namespace SocketIO4Net.ClientTest
         {
             Console.WriteLine("Starting TestSocketIOClient Example...");
 
-            socket = new Client("http://192.168.207.86/"); // url to nodejs 
+            //socket = new Client("http://192.168.207.86/"); // url to nodejs 
+            socket = new Client("http://localhost:808/"); // url to nodejs 
             socket.Opened += SocketOpened;
             socket.Message += SocketMessage;
             socket.SocketConnectionClosed += SocketConnectionClosed;
@@ -43,7 +45,7 @@ namespace SocketIO4Net.ClientTest
             // register for 'get_kinect' event with io server
             socket.On("get_kinect", (fn) =>
             {
-                Console.WriteLine("\r\nConnected event...\r\n");
+                Console.WriteLine("\r\nget_kinect event...\r\n");
                 Console.WriteLine("Emit KinectData object");
 
                 // emit Json Serializable object, anonymous types, or strings
@@ -52,7 +54,14 @@ namespace SocketIO4Net.ClientTest
             });
 
             // make the socket.io connection
-            socket.Connect();
+            try
+            {
+                socket.Connect();
+            }
+            catch (Exception exp)
+            {
+                System.Diagnostics.Debug.WriteLine(exp.Message);
+            }
         }
 
 
@@ -106,7 +115,8 @@ namespace SocketIO4Net.ClientTest
 
         private void button2_Click(object sender, EventArgs e)
         {
-            socket.Emit("capture", new { ok = "ok" });
+            KinectData newData = new KinectData() { Foo = "foo", Bar = "bar" };
+            socket.Emit("kinect_data", newData);
         }
 
 
